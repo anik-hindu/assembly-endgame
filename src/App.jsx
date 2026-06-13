@@ -1,5 +1,11 @@
+import Top from "./components/Top";
+
 function App() {
-  return <h1>Assembly: Endgame</h1>;
+  return (
+    <main className="main">
+      <Top />
+    </main>
+  );
 }
 
 export default App;
