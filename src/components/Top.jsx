@@ -1,4 +1,13 @@
-function Top() {
+import { languages } from "../data/languages";
+import { getFarewellText } from "../utils";
+
+function Top({ count }) {
+  const noticeMessage =
+    count > 0
+      ? getFarewellText(languages[count - 1].name)
+      : "Yay lots of choice, the world is safe";
+
+  const messageElement = <p className="notice-text">“{noticeMessage}”</p>;
   return (
     <header className="top">
       <section className="headline">
@@ -8,8 +17,8 @@ function Top() {
           from Assembly!
         </p>
       </section>
-      <section className="notice">
-        <p className="notice-text">“Yay lots of choice, the world is safe”</p>
+      <section className={count > 0 ? "notice notice-farewell" : "notice"}>
+        {messageElement}
       </section>
     </header>
   );
