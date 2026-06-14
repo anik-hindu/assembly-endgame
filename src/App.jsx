@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactConfetti from "react-confetti";
 import Eliminations from "./components/Eliminations";
 import Keyboard from "./components/Keyboard";
 import Letters from "./components/Letters";
@@ -18,7 +19,7 @@ function App() {
   const isGameWon = currentWord
     .split("")
     .every((letter) => guessedLetters.includes(letter));
-
+  const isGameLost = wrongGuessCount === 8;
 
   console.log(currentWord);
   console.log(isGameWon);
@@ -30,14 +31,25 @@ function App() {
 
   return (
     <main className="main">
-      <Top count={wrongGuessCount} isGameWon={isGameWon} />
+      {isGameWon && (
+        <ReactConfetti width={window.innerWidth} height={window.innerHeight} />
+      )}
+      <Top
+        count={wrongGuessCount}
+        isGameWon={isGameWon}
+        isGameLost={isGameLost}
+      />
       <Eliminations count={wrongGuessCount} />
-      <Letters word={currentWord} letters={guessedLetters} />
+      <Letters
+        word={currentWord}
+        letters={guessedLetters}
+        isGameLost={isGameLost}
+      />
       <Keyboard
         handleClick={getGuessedLetter}
         letters={guessedLetters}
         word={currentWord}
-        gameStatus={isGameWon}
+        gameStatus={isGameWon || isGameLost}
       />
     </main>
   );

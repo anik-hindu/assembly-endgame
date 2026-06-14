@@ -1,7 +1,7 @@
 import { languages } from "../data/languages";
 import { getFarewellText } from "../utils";
 
-function Top({ count, isGameWon }) {
+function Top({ count, isGameWon, isGameLost }) {
   const noticeMessage =
     count > 0
       ? getFarewellText(languages[count - 1].name)
@@ -14,14 +14,24 @@ function Top({ count, isGameWon }) {
       <p className="notice-desc">Well done! 🎉</p>
     </div>
   );
+  const gameLostElement = (
+    <div className="notice-container">
+      <p className="notice-status">Game over!</p>
+      <p className="notice-desc">You lose! Better start learning Assembly 😭</p>
+    </div>
+  );
 
   let className = "notice";
-  if (count > 0 && !isGameWon) {
+  if (count > 0 && !isGameWon && !isGameLost) {
     className += " notice-farewell";
   }
 
   if (isGameWon) {
     className += " notice-win";
+  }
+
+  if (isGameLost) {
+    className += " notice-lost";
   }
 
   return (
@@ -34,8 +44,9 @@ function Top({ count, isGameWon }) {
         </p>
       </section>
       <section className={className}>
-        {!isGameWon && messageElement}
+        {!isGameWon && !isGameLost && messageElement}
         {isGameWon && gameWonElement}
+        {isGameLost && gameLostElement}
       </section>
     </header>
   );

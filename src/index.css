@@ -98,6 +98,10 @@ body {
   background-color: #10a95b;
 }
 
+.notice-lost {
+  background-color: #ba2a2a;
+}
+
 .notice-status {
   font-size: 1.25rem;
   font-weight: 500;
@@ -169,6 +173,10 @@ body {
   height: 40px;
   width: 40px;
   padding: 0.375rem;
+}
+
+.letter-missed {
+  color: #ec5d49;
 }
 
 /* || KEYBOARD SECTION */
