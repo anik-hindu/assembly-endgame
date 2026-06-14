@@ -22,11 +22,16 @@ function App() {
   const isGameLost = wrongGuessCount === 8;
 
   console.log(currentWord);
-  console.log(isGameWon);
+  console.log(guessedLetters);
   function getGuessedLetter(letter) {
     setGuessedLetters((prevGuessedLetters) =>
       Array.from(new Set([...prevGuessedLetters, letter])),
     );
+  }
+
+  function startNewGame() {
+    setCurrentWord(() => getNewWord().toUpperCase());
+    setGuessedLetters([]);
   }
 
   return (
@@ -51,6 +56,11 @@ function App() {
         word={currentWord}
         gameStatus={isGameWon || isGameLost}
       />
+      {(isGameLost || isGameWon) && (
+        <button className="new-game-btn" onClick={startNewGame}>
+          NEW GAME
+        </button>
+      )}
     </main>
   );
 }
