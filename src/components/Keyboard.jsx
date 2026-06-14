@@ -1,4 +1,4 @@
-function Keyboard({ handleClick, letters, word }) {
+function Keyboard({ handleClick, letters, word, gameStatus }) {
   const alphabets = "QWERTYUIOPASDFGHJKLZXCVBNM";
   const keyElements = alphabets.split("").map((letter) => {
     const isGuessed = letters.includes(letter);
@@ -6,23 +6,29 @@ function Keyboard({ handleClick, letters, word }) {
 
     let keysClass = "keyboard-key";
     if (isCorrect) {
-      keysClass = "keyboard-key correct-key";
+      keysClass += " correct-key";
     }
     if (isGuessed && !isCorrect) {
-      keysClass = "keyboard-key wrong-key";
+      keysClass += " wrong-key";
     }
+
     return (
       <button
         key={letter}
         className={keysClass}
         onClick={() => handleClick(letter)}
+        disabled={gameStatus}
       >
         {letter}
       </button>
     );
   });
 
-  return <section className="keyboard">{keyElements}</section>;
+  return (
+    <section className={gameStatus ? "keyboard keyboard-disabled" : "keyboard"}>
+      {keyElements}
+    </section>
+  );
 }
 
 export default Keyboard;

@@ -31,7 +31,7 @@ body {
   max-height: 720px;
   height: 100%;
   width: 100%;
-  margin: auto;
+  margin: 0 auto;
   padding: 4.375rem 3.75rem;
 }
 
@@ -92,6 +92,20 @@ body {
 .notice-farewell {
   background-color: #7a5ea7;
   border: 1px dashed #323232;
+}
+
+.notice-win {
+  background-color: #10a95b;
+}
+
+.notice-status {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+}
+.notice-desc {
+  font-weight: 500;
+  margin: 0;
 }
 
 /* LANGUAGES ELIMINATIONS SECTION */
@@ -193,4 +207,8 @@ body {
 
 .wrong-key {
   background-color: #ec5d49;
+}
+
+.keyboard-disabled {
+  opacity: 0.5;
 }
