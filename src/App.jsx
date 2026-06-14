@@ -21,8 +21,6 @@ function App() {
     .every((letter) => guessedLetters.includes(letter));
   const isGameLost = wrongGuessCount === 8;
 
-  console.log(currentWord);
-  console.log(guessedLetters);
   function getGuessedLetter(letter) {
     setGuessedLetters((prevGuessedLetters) =>
       Array.from(new Set([...prevGuessedLetters, letter])),
@@ -34,6 +32,7 @@ function App() {
     setGuessedLetters([]);
   }
 
+  console.log(currentWord);
   return (
     <main className="main">
       {isGameWon && (
